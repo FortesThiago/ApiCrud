@@ -13,23 +13,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
     @Bean
-    public Docket poc() {
+    public Docket poc(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.fortes.thiago.poc2.user.resource"))
                 .build()
                 .useDefaultResponseMessages(false)
-                .apiInfo(metadata());
+                .apiInfo(apiInfo());
     }
 
-    private ApiInfo metadata() {
+
+    private ApiInfo apiInfo(){
         return new ApiInfoBuilder().title("POC API")
                 .description("API Documentation")
                 .contact("Thiago Fortes")
-                .version("1.0")
+                .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
                 .build();
     }
-
 }
