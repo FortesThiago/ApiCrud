@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Api("POC API REST")
@@ -24,33 +25,42 @@ public class Controller {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Return the user"),
             @ApiResponse(code = 404, message = "User not found"),
-            @ApiResponse(code = 500, message = "Internal error")
+            @ApiResponse(code = 500, message = "Server error")
     })
     @GetMapping("/{id}")
     public UserResponse findById(@PathVariable String id) {
         return facade.findById(id);
     }
 
-
     @ApiOperation(value = "Save an user")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "User created"),
+            @ApiResponse(code = 400, message = "Bad request"),
+            @ApiResponse(code = 500, message = "Server error")
+    })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse create(@RequestBody UserRequest user) {
+    public UserResponse create(@RequestBody @Valid UserRequest user) {
         return facade.create(user);
     }
 
     @ApiOperation(value = "Find all users saved")
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "Users found"),
+            @ApiResponse(code = 500, message = "Internal error")
+    })
     @GetMapping
     public List<UserResponse> findAllUsers() {
         return facade.findAllUsers();
     }
 
+
+    @ApiOperation(value = "Delete an user from his id")
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "User deleted"),
             @ApiResponse(code = 404, message = "User not found"),
             @ApiResponse(code = 500, message = "Internal error")
     })
-    @ApiOperation(value = "Delete an user from his id")
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteUserById(@PathVariable String id){

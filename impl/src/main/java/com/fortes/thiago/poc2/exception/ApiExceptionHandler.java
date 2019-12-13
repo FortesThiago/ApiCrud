@@ -24,7 +24,7 @@ public class ApiExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ExceptionModel handleDuplicateKeyException(Exception exception) {
         return ExceptionModel.builder()
-                .message("Erro interno")
+                .message(exception.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build();
     }
