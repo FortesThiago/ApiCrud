@@ -40,7 +40,7 @@ public class Controller {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse create(@RequestBody @Valid UserRequest user) {
+    public UserResponse create(@RequestBody @Valid UserRequest user){
         return facade.create(user);
     }
 

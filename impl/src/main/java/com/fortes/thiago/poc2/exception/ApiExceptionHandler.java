@@ -22,9 +22,9 @@ public class ApiExceptionHandler {
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ExceptionModel handleDuplicateKeyException(Exception exception) {
+    public ExceptionModel handleInternalError() {
         return ExceptionModel.builder()
-                .message(exception.getMessage())
+                .message("Server error")
                 .timestamp(LocalDateTime.now())
                 .build();
     }
