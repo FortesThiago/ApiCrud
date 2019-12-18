@@ -1,4 +1,3 @@
-
 plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'//puglin no qual gera jars executaveis para aplicação
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'//plugin que fornece a funcionalidade de gerenciamento de dependência
